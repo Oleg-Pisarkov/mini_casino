@@ -1,46 +1,53 @@
 import './bootstrap';
 
 document.addEventListener('DOMContentLoaded', function () {
+    // Ищем форму игры
     const form = document.getElementById('coinTossForm');
     const resultDiv = document.getElementById('result');
 
-    form.addEventListener('submit', async function (e) {
-        e.preventDefault();
 
-        // Собираем данные формы
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData);
+    // Проверяем, существует ли форма на текущей странице
+    if (form && resultDiv) {
+        form.addEventListener('submit', async function (e) {
+            e.preventDefault();
 
-        try {
-            const response = await fetch('/coin-toss', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-                },
-                body: JSON.stringify(data)
-            });
+            // Собираем данные формы
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData);
 
-            const result = await response.json();
+            try {
+                const response = await fetch('/coin-toss', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                    },
+                    body: JSON.stringify(data)
+                });
 
-            // Формируем сообщение о результате
-            let message = `
-                <p><strong>Ваша ставка:</strong> ${result.bet} ₽</p>
-                <p><strong>Ваш выбор:</strong> ${result.userChoice === 'heads' ? 'Орёл' : 'Решка'}</p>
-                <p><strong>Результат:</strong> ${result.result === 'heads' ? 'Орёл' : 'Решка'}</p>
-            `;
+                const result = await response.json();
 
-            if (result.win) {
-                message += `<p class="win"><strong>Вы выиграли!</strong> Ваш выигрыш: ${result.winnings} ₽</p>`;
-            } else {
-                message += `<p class="lose"><strong>Вы проиграли.</strong> Потеряно: ${result.bet} ₽</p>`;
+
+                // Формируем сообщение о результате
+                let message = `
+                    <p><strong>Ваша ставка:</strong> ${result.bet} ₽</p>
+                    <p><strong>Ваш выбор:</strong> ${result.userChoice === 'heads' ? 'Орёл' : 'Решка'}</p>
+                    <p><strong>Результат:</strong> ${result.result === 'heads' ? 'Орёл' : 'Решка'}</p>
+                `;
+
+                if (result.win) {
+                    message += `<p class="win"><strong>Вы выиграли!</strong> Ваш выигрыш: ${result.winnings} ₽</p>`;
+                } else {
+                    message += `<p class="lose"><strong>Вы проиграли.</strong> Потеряно: ${result.bet} ₽</p>`;
+                }
+
+                resultDiv.innerHTML = message;
+
+            } catch (error) {
+                resultDiv.innerHTML = '<p class="error">Ошибка при выполнении запроса. Попробуйте ещё раз.</p>';
+                console.error('Ошибка:', error);
             }
-
-            resultDiv.innerHTML = message;
-
-        } catch (error) {
-            resultDiv.innerHTML = '<p class="error">Ошибка при выполнении запроса. Попробуйте ещё раз.</p>';
-            console.error('Ошибка:', error);
-        }
-    });
+        });
+    }
+    // Если формы или блока результата нет — ничего не делаем
 });

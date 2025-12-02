@@ -12,36 +12,48 @@
 
 /* Глобальные настройки */
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 body {
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
-    color: #fff;
     min-height: 100vh;
-    line-height: 1.6;
     overflow-x: hidden;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background: rgba(42, 9, 71, 1);
 }
 
 /* Шапка сайта */
 .header {
-    background-color: #d4af37;
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    height: 160px;
     padding: 1.5rem 0;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+    margin: 00px 10px 0px 10px;
 }
 
 .header h1 {
-    color: #1a1a1a;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    font-size: 2.8rem;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-    margin: 0;
+    color: #ffec00;
     font-weight: bold;
+    font-size: 2.8rem;
+    letter-spacing: 3px;
+    text-align: center;
+    text-transform: uppercase;
+    text-shadow: 8px 1px 0px #92050580;
+}
+
+.header-register {
+     color: #ffec00;
+    font-weight: bold;
+    font-size: 2.8rem;
+    letter-spacing: 3px;
+    text-align: center;
+    text-transform: uppercase;
+    text-shadow: 8px 1px 0px #92050580;
+    margin-top: 25px;
 }
 
 /* Основной контейнер */
@@ -53,12 +65,13 @@ body {
 
 /* Блок игры */
 .game {
-    background-color: rgba(255, 255, 255, 0.12);
+    margin-top: 100px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: 20px;
     padding: 2.5rem;
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.18);
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+    background-color: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
     transition: transform 0.3s ease;
 }
 
@@ -67,14 +80,15 @@ body {
 }
 
 .game h2 {
-    text-align: center;
     margin-bottom: 2rem;
     color: #ffd700;
-    font-size: 2.4rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
     font-weight: bold;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+    font-size: 2.4rem;
+    letter-spacing: 2px;
+    text-align: center;
+    text-transform: uppercase;
+    text-shadow: 8px 1px 0px #92050580;
+
 }
 
 /* Группы форм */
@@ -85,31 +99,31 @@ body {
 .form-group label {
     display: block;
     margin-bottom: 0.8rem;
-    font-weight: bold;
     color: #e0e0e0;
-    text-transform: uppercase;
+    font-weight: bold;
     font-size: 1rem;
     letter-spacing: 0.5px;
+    text-transform: uppercase;
 }
 
 /* Поле ввода ставки */
 #bet {
     width: 100%;
-    padding: 1rem;
     border: 3px solid #d4af37;
     border-radius: 12px;
-    background-color: rgba(255, 255, 255, 0.18);
+    padding: 1rem;
     color: #fff;
-    font-size: 1.1rem;
-    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
     font-weight: 500;
+    font-size: 1.1rem;
+    background-color: rgba(255, 255, 255, 0.18);
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 #bet:focus {
-    outline: none;
     border-color: #ffec00;
-    background-color: rgba(255, 255, 255, 0.3);
     box-shadow: 0 0 15px rgba(255, 236, 0, 0.4);
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.3);
 }
 
 /* Варианты выбора (орёл/решка) */
@@ -122,53 +136,81 @@ body {
 
 .choices label {
     display: flex;
-    align-items: center;
+    flex: 1 1 auto;
     justify-content: center;
-    cursor: pointer;
-    padding: 1rem 1.8rem;
+    align-items: center;
+    min-width: 140px;
     border: 3px solid #d4af37;
     border-radius: 10px;
+    padding: 1rem 1.8rem;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-align: center;
+    text-transform: uppercase;
     background-color: rgba(212, 175, 55, 0.12);
     transition: all 0.4s ease;
-    flex: 1 1 auto;
-    min-width: 140px;
-    text-align: center;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
+    cursor: pointer;
 }
 
 .choices label:hover {
+    border-color: #ffec00;
     background-color: rgba(212, 175, 55, 0.3);
     transform: scale(1.05) translateY(-3px);
-    border-color: #ffec00;
 }
 
 .choices input[type="radio"] {
-    margin-right: 0.8rem;
-    accent-color: #d4af37;
     width: 18px;
     height: 18px;
+    margin-right: 0.8rem;
+    accent-color: #d4af37;
 }
 
+.form-input {
+    width: 100%;
+    padding: 12px 16px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #333;
+    background-color: #ffffff;
+    transition: border-color 0.3s, box-shadow 0.3s, transform 0.2s;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+    transform: translateY(-1px);
+}
+
+.form-title {
+    color: #ffec00;
+    font-weight: bold;
+    font-size: 2.2rem;
+    letter-spacing: 3px;
+    text-align: center;
+    text-transform: uppercase;
+}
 /* Кнопка отправки */
 button[type="submit"] {
-    background: linear-gradient(45deg, #d4af37, #ffec00);
-    color: #1a1a1a;
-    border: none;
-    padding: 1.2rem 2.5rem;
-    font-size: 1.2rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1.2px;
-    border-radius: 15px;
-    cursor: pointer;
+    position: relative;
     display: block;
     width: 100%;
-    transition: all 0.4s ease;
+    border: none;
+    border-radius: 15px;
+    padding: 1.2rem 2.5rem;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
-    position: relative;
     overflow: hidden;
+    color: #1a1a1a;
+    font-weight: bold;
+    font-size: 1.2rem;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    background: linear-gradient(45deg, #d4af37, #ffec00);
+    transition: all 0.4s ease;
+    cursor: pointer;
 }
 
 button[type="submit"]:before {
@@ -183,8 +225,8 @@ button[type="submit"]:before {
 }
 
 button[type="submit"]:hover {
-    transform: translateY(-3px) scale(1.03);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+    transform: translateY(-3px) scale(1.03);
 }
 
 button[type="submit"]:hover:before {
@@ -192,18 +234,18 @@ button[type="submit"]:hover:before {
 }
 
 button[type="submit"]:active {
-    transform: translateY(0) scale(0.98);
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+    transform: translateY(0) scale(0.98);
 }
 
 /* Блок результата */
 .result {
     margin-top: 2rem;
     padding: 1.8rem;
-    border-radius: 15px;
-    background-color: rgba(0, 0, 0, 0.25);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    /*border-radius: 15px;*/
+    /*background-color: rgba(0, 0, 0, 0.25);*/
+    /*border: 1px solid rgba(255, 255, 255, 0.15);*/
+    /*box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);*/
     animation: fadeIn 0.6s ease;
 }
 
@@ -230,14 +272,14 @@ button[type="submit"]:active {
 }
 
 .error {
-    color: #f44336;
-    background-color: rgba(244, 67, 54, 0.1);
-    padding: 1.2rem;
-    border-radius: 10px;
-    border: 1px solid #f44336;
-    text-align: center;
-    font-weight: 500;
     margin: 1rem 0;
+    border: 1px solid #f44336;
+    border-radius: 10px;
+    padding: 1.2rem;
+    color: #f44336;
+    font-weight: 500;
+    text-align: center;
+    background-color: rgba(244, 67, 54, 0.1);
 }
 
 /* Адаптивные стили */
@@ -252,8 +294,8 @@ button[type="submit"]:active {
     }
 
     .game {
-        padding: 1.8rem;
         border-radius: 15px;
+        padding: 1.8rem;
     }
 
     .game h2 {
@@ -277,8 +319,8 @@ button[type="submit"]:active {
     }
 
     .choices label {
-        padding: 0.8rem 1.3rem;
         min-width: auto;
+        padding: 0.8rem 1.3rem;
         font-size: 0.85rem;
         letter-spacing: 0.5px;
     }
@@ -290,8 +332,8 @@ button[type="submit"]:active {
     }
 
     .result {
-        padding: 1.4rem;
         margin-top: 1.5rem;
+        padding: 1.4rem;
     }
 
     .win, .lose, .error {
@@ -317,8 +359,8 @@ button[type="submit"]:active {
     }
 
     .choices label {
-        width: 100%;
         justify-content: flex-start;
+        width: 100%;
     }
 
     button[type="submit"] {
@@ -338,17 +380,104 @@ button[type="submit"]:active {
 /* Дополнительные стили для элементов формы */
 .form-control {
     width: 100%;
-    padding: 0.6rem;
     border: 2px solid #d4af37;
     border-radius: 8px;
-    background-color: rgba(255, 255, 255, 0.15);
+    padding: 0.6rem;
     color: #fff;
     font-size: 1rem;
+    background-color: rgba(255, 255, 255, 0.15);
     transition: border-color 0.3s ease;
 }
 
 .form-control:focus {
-    outline: none;
     border-color: #ffec00;
+    outline: none;
     background-color: rgba(255, 255, 255, 0.25);
+}
+
+.auth-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100px;
+    height: 100px;
+    margin-top: 10px;
+}
+
+.btn {
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-weight: 500;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-register {
+    width: 150px;
+    height: 40px;
+    color: #ffec00;
+}
+
+.btn-register:hover {
+    background-color: rgb(0 0 0 / 25%);
+
+}
+
+.btn-login {
+    width: 150px;
+    height: 40px;
+    color: #ffec00;
+}
+
+.btn-login:hover {
+    background-color: rgb(0 0 0 / 25%);
+
+}
+
+.btn-logout {
+    color: #ffec00;
+    font-weight: bold;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+}
+
+.btn-logout:hover {
+    background-color: #d32f2f;
+}
+
+
+.auth-prompt {
+    max-width: 500px;
+    margin: 2rem auto;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.auth-prompt p {
+    margin-bottom: 15px;
+    color: #e0e0e0;
+}
+
+.social-icons {
+    display: flex;
+    align-items: center; /* выравнивание по центру */
+    gap: 10px; /* расстояние между иконками */
+    margin-bottom: 10px; /* отступ под иконками */
+}
+
+.social-icons a {
+    text-decoration: none; /* убираем подчёркивание */
+}
+
+.social-icons img {
+    border-radius: 50%; /* закругление иконок (по желанию) */
+    transition: transform 0.3s; /* анимация при наведении */
+}
+
+.social-icons img:hover {
+    transform: scale(1.1); /* увеличение при наведении */
 }

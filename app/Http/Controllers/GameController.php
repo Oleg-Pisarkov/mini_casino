@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Result; // Импортируем модель Result для работы с БД
 
 class GameController extends Controller
 {
@@ -22,6 +23,16 @@ class GameController extends Controller
                 ($result === 1 && $userChoice === 'tails');
 
         $winnings = $win ? $bet * 2 : 0;
+
+        // Сохраняем результат в БД
+        Result::create([
+            'user_id' => auth()->id(), // ID авторизованного пользователя
+            'bet' => $bet,
+            'choice' => $userChoice,
+            'result' => $result === 0 ? 'heads' : 'tails',
+            'win' => $win,
+            'winnings' => $winnings,
+        ]);
 
         return response()->json([
             'result' => $result === 0 ? 'heads' : 'tails',
