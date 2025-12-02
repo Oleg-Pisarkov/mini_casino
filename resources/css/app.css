@@ -43,6 +43,7 @@ body {
     text-align: center;
     text-transform: uppercase;
     text-shadow: 8px 1px 0px #92050580;
+    margin-inline-start: 60px;
 }
 
 .header-register {
@@ -89,6 +90,17 @@ body {
     text-transform: uppercase;
     text-shadow: 8px 1px 0px #92050580;
 
+}
+
+.history-title{
+   margin-bottom: 2rem;
+    color: #ffd700;
+    font-weight: bold;
+    font-size: 2.4rem;
+    letter-spacing: 2px;
+    text-align: center;
+    text-transform: uppercase;
+    text-shadow: 8px 1px 0px #92050580;
 }
 
 /* Группы форм */
@@ -480,4 +492,75 @@ button[type="submit"]:active {
 
 .social-icons img:hover {
     transform: scale(1.1); /* увеличение при наведении */
+}
+
+.history-link {
+    color: #ffec00;
+    font-weight: bold;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    width: 180px;
+}
+
+.history-link:hover {
+    background-color: #e0f7e0;
+    color: #2E7D32;
+}
+
+/* Таблица истории */
+.game-history {
+
+
+}
+
+.history-table {
+    width: 100%;
+    border-collapse: collapse;
+
+}
+
+.history-table th {
+    background-color: #1200fd;
+    font-weight: bold;
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+
+.history-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid #ddd;
+    background-color: #252573;
+
+}
+
+/* Статус победы/поражения */
+.status-win {
+    color: #2E7D32;
+    font-weight: bold;
+}
+
+.status-lose {
+    color: #C62828;
+    font-weight: bold;
+}
+
+/* Пагинация */
+.pagination {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.pagination a,
+.pagination span {
+    padding: 8px 12px;
+}
+
+.pagination .current {
+    background-color: #4CAF50;
+    color: white;
+    border-color: #4CAF50;
 }

@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Result; // Импортируем модель Result для работы с БД
+use App\Models\Result;
+use Illuminate\Support\Facades\Auth;
 
 class GameController extends Controller
 {
+    /**
+     * Обработка броска монеты
+     */
     public function coinToss(Request $request)
     {
         // Валидация ставки
@@ -26,7 +30,7 @@ class GameController extends Controller
 
         // Сохраняем результат в БД
         Result::create([
-            'user_id' => auth()->id(), // ID авторизованного пользователя
+            'user_id' => Auth::id(), // ID авторизованного пользователя
             'bet' => $bet,
             'choice' => $userChoice,
             'result' => $result === 0 ? 'heads' : 'tails',
@@ -41,5 +45,19 @@ class GameController extends Controller
             'winnings' => $winnings,
             'bet' => $bet
         ]);
+    }
+
+    /**
+     * Отображение истории игр текущего пользователя
+     */
+    public function showHistory(Request $request)
+    {
+        // Получаем историю игр текущего пользователя (сортировка по дате, новые сверху)
+        $results = Result::where('user_id', Auth::id())
+            ->orderBy('created_at', 'desc')
+            ->paginate(10); // 10 записей на страницу
+
+        // Возвращаем представление с данными
+        return view('games.game_history', compact('results'));
     }
 }

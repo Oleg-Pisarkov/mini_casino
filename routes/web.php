@@ -19,3 +19,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::post('/coin-toss', [GameController::class, 'coinToss'])
     ->middleware('auth')
     ->name('coin.toss');
+
+Route::get('/game-history', [GameController::class, 'showHistory'])
+    ->middleware('auth')
+    ->name('game.history');
