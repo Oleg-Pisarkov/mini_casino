@@ -14,6 +14,9 @@
                 <a href="{{ route('register') }}" class="btn btn-register">Регистрация</a>
                 <a href="{{ route('login') }}" class="btn btn-login">Вход</a>
             @else
+            <div class="user-balance">
+                Баланс: <span id="balance">{{ number_format(Auth::user()->balance, 2) }} ₽</span>
+            </div>
                  @if(request()->routeIs('game.history'))
             <a href="{{ route('home') }}" class="history-link">Играть</a>
         @else

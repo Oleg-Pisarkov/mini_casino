@@ -12,40 +12,59 @@ class GameController extends Controller
      * Обработка броска монеты
      */
     public function coinToss(Request $request)
-    {
-        // Валидация ставки
-        $request->validate([
-            'bet' => 'required|numeric|min:1|max:1000',
-        ]);
+{
+    // Валидация ставки
+    $request->validate([
+        'bet' => 'required|numeric|min:1|max:1000',
+    ]);
 
-        $bet = (float)$request->input('bet');
-        $userChoice = $request->input('choice'); // 'heads' или 'tails'
+    $bet = (float)$request->input('bet');
+    $userChoice = $request->input('choice'); // 'heads' или 'tails'
 
-        // Генерация результата (0 — орёл, 1 — решка)
-        $result = rand(0, 1);
-        $win = ($result === 0 && $userChoice === 'heads') ||
-                ($result === 1 && $userChoice === 'tails');
+    // Получаем текущего пользователя
+    $user = Auth::user();
 
-        $winnings = $win ? $bet * 2 : 0;
-
-        // Сохраняем результат в БД
-        Result::create([
-            'user_id' => Auth::id(), // ID авторизованного пользователя
-            'bet' => $bet,
-            'choice' => $userChoice,
-            'result' => $result === 0 ? 'heads' : 'tails',
-            'win' => $win,
-            'winnings' => $winnings,
-        ]);
-
+    // Проверяем, хватает ли баланса
+    if ($user->balance < $bet) {
         return response()->json([
-            'result' => $result === 0 ? 'heads' : 'tails',
-            'userChoice' => $userChoice,
-            'win' => $win,
-            'winnings' => $winnings,
-            'bet' => $bet
-        ]);
+            'error' => 'Недостаточно средств на балансе.',
+            'balance' => $user->balance,
+        ], 400);
     }
+
+    // Генерация результата (0 — орёл, 1 — решка)
+    $result = rand(0, 1);
+    $win = ($result === 0 && $userChoice === 'heads') ||
+            ($result === 1 && $userChoice === 'tails');
+
+    $winnings = $win ? $bet * 2 : 0;
+
+    // Обновляем баланс: списываем ставку, начисляем выигрыш
+    $user->balance -= $bet;
+    if ($win) {
+        $user->balance += $winnings;
+    }
+    $user->save();
+
+    // Сохраняем результат в БД
+    Result::create([
+        'user_id' => $user->id,
+        'bet' => $bet,
+        'choice' => $userChoice,
+        'result' => $result === 0 ? 'heads' : 'tails',
+        'win' => $win,
+        'winnings' => $winnings,
+    ]);
+
+    return response()->json([
+        'result' => $result === 0 ? 'heads' : 'tails',
+        'userChoice' => $userChoice,
+        'win' => $win,
+        'winnings' => $winnings,
+        'bet' => $bet,
+        'balance' => $user->balance, // Отправляем новый баланс
+    ]);
+}
 
     /**
      * Отображение истории игр текущего пользователя

@@ -28,6 +28,7 @@ public function register(Request $request)
         'name' => $request->input('name'),
         'email' => $request->input('email'),
         'password' => Hash::make($request->input('password')),
+        'balance' => 1000.00,
     ]);
 
     // Отправляем приветственное письмо (ошибка не повлияет на сохранение)

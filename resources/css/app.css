@@ -589,3 +589,32 @@ button[type="submit"]:active {
     from { opacity: 0; transform: translateY(-5px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+/* Сообщения об ошибках */
+.error {
+    color: #f44336;
+    background-color: rgba(244, 67, 54, 0.1);
+    padding: 10px;
+    border-radius: 4px;
+    margin: 10px 0;
+}
+
+/* Сообщение о выигрыше */
+.win {
+    color: #4caf50;
+    font-weight: bold;
+}
+
+/* Сообщение о проигрыше */
+.lose {
+    color: #ff9800;
+    font-weight: bold;
+}
+
+/* Блок баланса */
+.user-balance {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    margin-right: 20px;
+}

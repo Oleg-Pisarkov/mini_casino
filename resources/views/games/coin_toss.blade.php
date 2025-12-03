@@ -20,6 +20,7 @@
                 <label for="bet">Ваша ставка (1–1000):</label>
                 <input type="number" id="bet" name="bet" min="1" max="1000" value="10" required>
             </div>
+           <p><strong>Ваш баланс:</strong> <span id="balance-form">{{ number_format(Auth::user()->balance, 2) }} ₽</span></p>
             <div class="form-group">
                 <label>Ваш выбор:</label>
                 <div class="choices">
