@@ -14,7 +14,12 @@
                 <a href="{{ route('register') }}" class="btn btn-register">Регистрация</a>
                 <a href="{{ route('login') }}" class="btn btn-login">Вход</a>
             @else
-                <a href="{{ route('game.history') }}" class="history-link">История игр</a>
+                 @if(request()->routeIs('game.history'))
+            <a href="{{ route('home') }}" class="history-link">Играть</a>
+        @else
+            {{-- На всех остальных страницах показываем «История игр» --}}
+            <a href="{{ route('game.history') }}" class="history-link">История игр</a>
+        @endif
                 <form action="{{ route('logout') }}" method="POST" style="display: inline;">
                     @csrf
                     <button class="btn-logout">Выход</button>

@@ -20,6 +20,7 @@
                 <div class="alert alert-success">{{ session('success') }}</div>
             @endif
 
+            <!-- Блок общих ошибок (опционально) -->
             @if($errors->any())
                 <div class="alert alert-error">
                     @foreach($errors->all() as $error)
@@ -31,14 +32,36 @@
             <form method="POST" action="{{ route('login') }}">
                 @csrf
 
+                <!-- Email -->
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input class="form-input" type="email" id="email" name="email" value="{{ old('email') }}" required autofocus>
+                    <input class="form-input {{ $errors->has('email') ? 'is-invalid' : '' }}"
+                           type="email"
+                           id="email"
+                           name="email"
+                           value="{{ old('email') }}"
+                           required
+                           autofocus>
+                    @if($errors->has('email'))
+                        <div class="invalid-feedback">
+                            {{ $errors->first('email') }}
+                        </div>
+                    @endif
                 </div>
 
+                <!-- Пароль -->
                 <div class="form-group">
                     <label for="password">Пароль</label>
-                    <input class="form-input" type="password" id="password" name="password" required>
+                    <input class="form-input {{ $errors->has('password') ? 'is-invalid' : '' }}"
+                           type="password"
+                           id="password"
+                           name="password"
+                           required>
+                    @if($errors->has('password'))
+                        <div class="invalid-feedback">
+                            {{ $errors->first('password') }}
+                        </div>
+                    @endif
                 </div>
 
                 <button type="submit">Войти</button>
