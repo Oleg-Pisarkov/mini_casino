@@ -42,7 +42,7 @@ body {
     letter-spacing: 3px;
     text-align: center;
     text-transform: uppercase;
-    text-shadow: 8px 1px 0px #92050580;
+    text-shadow: 5px 1px 0px #92050580;
     margin-inline-start: 60px;
 }
 
@@ -53,7 +53,7 @@ body {
     letter-spacing: 3px;
     text-align: center;
     text-transform: uppercase;
-    text-shadow: 8px 1px 0px #92050580;
+    text-shadow: 5px 1px 0px #92050580;
     margin-top: 25px;
 }
 
@@ -73,6 +73,7 @@ body {
     background-color: rgba(255, 255, 255, 0.12);
     backdrop-filter: blur(12px);
     transition: transform 0.3s ease;
+    
 }
 
 .game:hover {
@@ -87,7 +88,7 @@ body {
     letter-spacing: 2px;
     text-align: center;
     text-transform: uppercase;
-    text-shadow: 8px 1px 0px #92050580;
+    text-shadow: 5px 1px 0px #92050580;
 
 }
 
@@ -251,7 +252,7 @@ button[type="submit"]:active {
 
 /* Блок результата */
 .result {
-    margin-top: 2rem;
+    margin-top: 1rem;
     padding: 1.8rem;
     /*border-radius: 15px;*/
     /*background-color: rgba(0, 0, 0, 0.25);*/
@@ -272,6 +273,7 @@ button[type="submit"]:active {
     font-size: 1.4rem;
     text-align: center;
     text-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+    margin-top: 20px;
 }
 
 .lose {
@@ -280,6 +282,7 @@ button[type="submit"]:active {
     font-size: 1.4rem;
     text-align: center;
     text-shadow: 0 0 5px rgba(244, 67, 54, 0.5);
+    margin-top: 20px;
 }
 
 .error {
@@ -613,8 +616,34 @@ button[type="submit"]:active {
 
 /* Блок баланса */
 .user-balance {
-    font-size: 1rem;
+    color: #ffec00;
     font-weight: bold;
-    color: #fff;
-    margin-right: 20px;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    width: 200px;
+}
+
+.user-balance:hover {
+   transform: scale(1.05) translateY(-3px);
+}
+
+.coin-container {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 20px auto;
+}
+
+#coin {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transform-origin: 50% 50%;
+}
+
+@keyframes coinFlip {
+    0% { transform: rotateX(0deg); }
+    50% { transform: rotateX(180deg); }
+    100% { transform: rotateX(360deg); }
 }
