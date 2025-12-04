@@ -10,20 +10,20 @@
     @guest
         <div class="auth-prompt">
             <p>Чтобы играть, необходимо войти в аккаунт или зарегистрироваться.</p>
-            <a href="{{ route('login') }}" class="btn btn-login">Войти</a>
-            <a href="{{ route('register') }}" class="btn btn-register">Зарегистрироваться</a>
+            <a href="{{ route('login') }}" class="btn auth-nav__btn_login">Войти</a>
+            <a href="{{ route('register') }}" class="btn auth-nav__btn_register">Зарегистрироваться</a>
         </div>
     @else
         <form id="coinTossForm" action="{{ route('coin.toss') }}" method="POST">
             @csrf
-            <div class="form-group">
+            <div class="coin-toss-form__group">
                 <label for="bet">Ваша ставка (1–1000):</label>
                 <input type="number" id="bet" name="bet" min="1" max="1000" value="10" required>
             </div>
            <p><strong>Ваш баланс:</strong> <span id="balance-form">{{ number_format(Auth::user()->balance, 2) }} ₽</span></p>
-            <div class="form-group">
+            <div class="coin-toss-form__group">
                 <label>Ваш выбор:</label>
-                <div class="choices">
+                <div class="coin-toss-form__choices">
                     <label><input type="radio" name="choice" value="heads" checked> Орёл</label>
                     <label><input type="radio" name="choice" value="tails"> Решка</label>
                 </div>

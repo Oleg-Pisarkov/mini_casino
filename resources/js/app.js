@@ -6,14 +6,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const resultDiv = document.getElementById("result");
     const balanceElement = document.getElementById("balance");
 
-    form.addEventListener('click', () => {
-    form.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-        inline: 'nearest'
-    });
-});
-
     // Проверяем, есть ли все необходимые элементы на странице
     if (!form || !resultDiv || !balanceElement) {
         return; // Если чего-то нет — не инициализируем обработчик
@@ -28,7 +20,6 @@ document.addEventListener("DOMContentLoaded", function () {
             coin.style.animation = "none"; // Убираем анимацию после завершения
         });
         coin.style.animation = "coinFlip 1s ease";
-
 
         // 2. Ждём завершения анимации (3 секунды)
         await new Promise((resolve) => setTimeout(resolve, 3000));
@@ -141,6 +132,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Выводим результат в блок #result
             resultDiv.innerHTML = message;
+            resultDiv.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+                inline: "nearest",
+            });
         } catch (error) {
             // Обработка сетевых ошибок
             resultDiv.innerHTML = `

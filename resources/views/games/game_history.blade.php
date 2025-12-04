@@ -2,12 +2,12 @@
 
 @section('content')
 <div class="game-history">
-    <h2 class="history-title">История игр</h2>
+    <h2 class="game-history__title">История игр</h2>
 
     @if($results->isEmpty())
         <p>У вас пока нет истории игр.</p>
     @else
-        <table class="history-table">
+        <table class="game-history__table">
             <thead>
                 <tr>
                     <th>Дата</th>

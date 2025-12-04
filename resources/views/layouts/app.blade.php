@@ -11,21 +11,21 @@
     <header class="header">
         <nav class="auth-nav">
             @guest
-                <a href="{{ route('register') }}" class="btn btn-register">Регистрация</a>
-                <a href="{{ route('login') }}" class="btn btn-login">Вход</a>
+                <a href="{{ route('register') }}" class="btn auth-nav__btn_register">Регистрация</a>
+                <a href="{{ route('login') }}" class="btn auth-nav__btn_login">Вход</a>
             @else
             <div class="user-balance">
                 Баланс: <span id="balance">{{ number_format(Auth::user()->balance, 2) }} ₽</span>
             </div>
                  @if(request()->routeIs('game.history'))
-            <a href="{{ route('home') }}" class="history-link">Играть</a>
+            <a href="{{ route('home') }}" class="auth-nav__link_history">Играть</a>
         @else
             {{-- На всех остальных страницах показываем «История игр» --}}
-            <a href="{{ route('game.history') }}" class="history-link">История игр</a>
+            <a href="{{ route('game.history') }}" class="auth-nav__link_history">История игр</a>
         @endif
                 <form action="{{ route('logout') }}" method="POST" style="display: inline;">
                     @csrf
-                    <button class="btn-logout">Выход</button>
+                    <button class="auth-nav__btn_logout">Выход</button>
                 </form>
             @endauth
         </nav>

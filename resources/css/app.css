@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
@@ -6,11 +6,11 @@
 @source '../**/*.js';
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+        "Noto Color Emoji";
 }
 
-/* Глобальные настройки */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -19,23 +19,22 @@
 
 body {
     min-height: 100vh;
-    overflow-x: hidden;
     color: #fff;
-    font-family: 'Arial', sans-serif;
+    font-family: "Arial", sans-serif;
     line-height: 1.6;
     background: rgba(42, 9, 71, 1);
 }
 
-/* Шапка сайта */
 .header {
     display: flex;
     justify-content: space-between;
     height: 160px;
+    margin: 0 1rem 0 1rem;
     padding: 1.5rem 0;
-    margin: 00px 10px 0px 10px;
 }
 
 .header h1 {
+    margin-inline-start: 60px;
     color: #ffec00;
     font-weight: bold;
     font-size: 2.8rem;
@@ -43,41 +42,37 @@ body {
     text-align: center;
     text-transform: uppercase;
     text-shadow: 5px 1px 0px #92050580;
-    margin-inline-start: 60px;
 }
 
 .header-register {
-     color: #ffec00;
+    margin-top: 25px;
+    color: #ffec00;
     font-weight: bold;
     font-size: 2.8rem;
     letter-spacing: 3px;
     text-align: center;
     text-transform: uppercase;
     text-shadow: 5px 1px 0px #92050580;
-    margin-top: 25px;
 }
 
-/* Основной контейнер */
 .container {
     max-width: 850px;
-    margin: 2.5rem auto;
+    margin: 4.5rem auto 0 auto;
     padding: 0 1.5rem;
 }
 
-/* Блок игры */
 .game {
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    border: 3px solid rgba(255, 255, 255, 0.18);
     border-radius: 20px;
     padding: 2.5rem;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+    box-shadow: 0px 0px 20px 20px rgb(28 8 42 / 74%);
     background-color: rgba(255, 255, 255, 0.12);
     backdrop-filter: blur(12px);
     transition: transform 0.3s ease;
-    
 }
 
 .game:hover {
-    transform: translateY(-5px);
+    transform: translateY(-50px);
 }
 
 .game h2 {
@@ -89,11 +84,10 @@ body {
     text-align: center;
     text-transform: uppercase;
     text-shadow: 5px 1px 0px #92050580;
-
 }
 
-.history-title{
-   margin-bottom: 2rem;
+.game-history__title {
+    margin-bottom: 2rem;
     color: #ffd700;
     font-weight: bold;
     font-size: 2.4rem;
@@ -103,12 +97,11 @@ body {
     text-shadow: 8px 1px 0px #92050580;
 }
 
-/* Группы форм */
-.form-group {
+.coin-toss-form__group {
     margin-bottom: 2rem;
 }
 
-.form-group label {
+.coin-toss-form__group label {
     display: block;
     margin-bottom: 0.8rem;
     color: #e0e0e0;
@@ -118,7 +111,6 @@ body {
     text-transform: uppercase;
 }
 
-/* Поле ввода ставки */
 #bet {
     width: 100%;
     border: 3px solid #d4af37;
@@ -138,15 +130,14 @@ body {
     background-color: rgba(255, 255, 255, 0.3);
 }
 
-/* Варианты выбора (орёл/решка) */
-.choices {
+.coin-toss-form__choices {
     display: flex;
     flex-wrap: wrap;
     gap: 1.2rem;
     margin-top: 1rem;
 }
 
-.choices label {
+.coin-toss-form__choices label {
     display: flex;
     flex: 1 1 auto;
     justify-content: center;
@@ -164,13 +155,13 @@ body {
     cursor: pointer;
 }
 
-.choices label:hover {
+.coin-toss-form__choices label:hover {
     border-color: #ffec00;
     background-color: rgba(212, 175, 55, 0.3);
     transform: scale(1.05) translateY(-3px);
 }
 
-.choices input[type="radio"] {
+.coin-toss-form__choices input[type="radio"] {
     width: 18px;
     height: 18px;
     margin-right: 0.8rem;
@@ -178,22 +169,22 @@ body {
 }
 
 .form-input {
-    width: 100%;
-    padding: 12px 16px;
-    margin: 8px 0;
     box-sizing: border-box;
+    width: 100%;
+    margin: 8px 0;
     border: 2px solid #e0e0e0;
     border-radius: 8px;
-    font-size: 16px;
+    padding: 12px 16px;
     color: #333;
+    font-size: 16px;
     background-color: #ffffff;
     transition: border-color 0.3s, box-shadow 0.3s, transform 0.2s;
 }
 
 .form-input:focus {
-    outline: none;
-    border-color: #4CAF50;
+    border-color: #4caf50;
     box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+    outline: none;
     transform: translateY(-1px);
 }
 
@@ -205,7 +196,7 @@ body {
     text-align: center;
     text-transform: uppercase;
 }
-/* Кнопка отправки */
+
 button[type="submit"] {
     position: relative;
     display: block;
@@ -226,13 +217,18 @@ button[type="submit"] {
 }
 
 button[type="submit"]:before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
     transition: left 0.7s;
 }
 
@@ -250,39 +246,39 @@ button[type="submit"]:active {
     transform: translateY(0) scale(0.98);
 }
 
-/* Блок результата */
 .result {
     margin-top: 1rem;
     padding: 1.8rem;
-    /*border-radius: 15px;*/
-    /*background-color: rgba(0, 0, 0, 0.25);*/
-    /*border: 1px solid rgba(255, 255, 255, 0.15);*/
-    /*box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);*/
     animation: fadeIn 0.6s ease;
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-/* Стили для сообщений */
 .win {
+    margin-top: 20px;
     color: #4caf50;
     font-weight: bold;
     font-size: 1.4rem;
     text-align: center;
     text-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
-    margin-top: 20px;
 }
 
 .lose {
+    margin-top: 20px;
     color: #f44336;
     font-weight: bold;
     font-size: 1.4rem;
     text-align: center;
     text-shadow: 0 0 5px rgba(244, 67, 54, 0.5);
-    margin-top: 20px;
 }
 
 .error {
@@ -296,14 +292,13 @@ button[type="submit"]:active {
     background-color: rgba(244, 67, 54, 0.1);
 }
 
-/* Адаптивные стили */
 @media (max-width: 768px) {
     .header h1 {
         font-size: 2.2rem;
     }
 
     .container {
-        margin: 1.5rem auto;
+        margin: 7.5rem auto;
         padding: 0 1rem;
     }
 
@@ -317,7 +312,7 @@ button[type="submit"]:active {
         letter-spacing: 1px;
     }
 
-    .form-group label {
+    .coin-toss-form__group label {
         font-size: 0.9rem;
         letter-spacing: 0.3px;
     }
@@ -327,12 +322,12 @@ button[type="submit"]:active {
         font-size: 1rem;
     }
 
-    .choices {
+    .coin-toss-form__choices {
         gap: 0.8rem;
         margin-top: 0.7rem;
     }
 
-    .choices label {
+    .coin-toss-form__choices label {
         min-width: auto;
         padding: 0.8rem 1.3rem;
         font-size: 0.85rem;
@@ -350,7 +345,9 @@ button[type="submit"]:active {
         padding: 1.4rem;
     }
 
-    .win, .lose, .error {
+    .win,
+    .lose,
+    .error {
         font-size: 1.2rem;
     }
 }
@@ -368,11 +365,11 @@ button[type="submit"]:active {
         font-size: 1.6rem;
     }
 
-    .choices {
+    .coin-toss-form__choices {
         flex-direction: column;
     }
 
-    .choices label {
+    .coin-toss-form__choices label {
         justify-content: flex-start;
         width: 100%;
     }
@@ -386,12 +383,13 @@ button[type="submit"]:active {
         padding: 1.2rem;
     }
 
-    .win, .lose, .error {
+    .win,
+    .lose,
+    .error {
         font-size: 1.1rem;
     }
 }
 
-/* Дополнительные стили для элементов формы */
 .form-control {
     width: 100%;
     border: 2px solid #d4af37;
@@ -428,40 +426,36 @@ button[type="submit"]:active {
     cursor: pointer;
 }
 
-.btn-register {
+.auth-nav__btn_register {
     width: 150px;
     height: 40px;
     color: #ffec00;
 }
 
-.btn-register:hover {
+.auth-nav__btn_register:hover {
     background-color: rgb(0 0 0 / 25%);
-
 }
 
-.btn-login {
+.auth-nav__btn_login {
     width: 150px;
     height: 40px;
     color: #ffec00;
 }
 
-.btn-login:hover {
+.auth-nav__btn_login:hover {
     background-color: rgb(0 0 0 / 25%);
-
-
 }
 
-.btn-logout {
+.auth-nav__btn_logout {
     color: #ffec00;
     font-weight: bold;
     font-size: 1.2rem;
     letter-spacing: 1px;
 }
 
-.btn-logout:hover {
+.auth-nav__btn_logout:hover {
     transform: scale(1.05) translateY(-3px);
 }
-
 
 .auth-prompt {
     max-width: 500px;
@@ -479,81 +473,70 @@ button[type="submit"]:active {
 
 .social-icons {
     display: flex;
-    align-items: center; /* выравнивание по центру */
-    gap: 10px; /* расстояние между иконками */
-    margin-bottom: 10px; /* отступ под иконками */
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
 }
 
 .social-icons a {
-    text-decoration: none; /* убираем подчёркивание */
+    text-decoration: none;
 }
 
 .social-icons img {
-    border-radius: 50%; /* закругление иконок (по желанию) */
-    transition: transform 0.3s; /* анимация при наведении */
+    border-radius: 50%;
+    transition: transform 0.3s;
 }
 
 .social-icons img:hover {
-    transform: scale(1.1); /* увеличение при наведении */
+    transform: scale(1.1);
 }
 
-.history-link {
+.auth-nav__link_history {
+    width: 180px;
     color: #ffec00;
     font-weight: bold;
     font-size: 1.2rem;
     letter-spacing: 1px;
-    width: 180px;
 }
 
-.history-link:hover {
-   transform: scale(1.05) translateY(-3px);
+.auth-nav__link_history:hover {
+    transform: scale(1.05) translateY(-3px);
 }
 
-/* Таблица истории */
-.game-history {
-
-
-}
-
-.history-table {
+.game-history__table {
     width: 100%;
     border-collapse: collapse;
-
 }
 
-.history-table th {
-    background-color: #1200fd;
+.game-history__table th {
+    border: 1px solid #ddd;
+    padding: 12px 15px;
     font-weight: bold;
-    padding: 12px 15px;
     text-align: left;
-    border: 1px solid #ddd;
+    background-color: #1200fd;
 }
 
-
-.history-table td {
+.game-history__table td {
+    border: 1px solid #ddd;
     padding: 12px 15px;
     text-align: left;
-    border: 1px solid #ddd;
     background-color: #252573;
-
 }
 
-/* Статус победы/поражения */
 .status-win {
-    color: #2E7D32;
+    color: #2e7d32;
     font-weight: bold;
 }
 
 .status-lose {
-    color: #C62828;
+    color: #c62828;
     font-weight: bold;
 }
 
-/* Пагинация */
 .pagination {
-    margin-top: 20px;
     display: flex;
     justify-content: center;
+    margin-top: 20px;
 }
 
 .pagination a,
@@ -562,69 +545,68 @@ button[type="submit"]:active {
 }
 
 .pagination .current {
-    background-color: #4CAF50;
+    border-color: #4caf50;
     color: white;
-    border-color: #4CAF50;
+    background-color: #4caf50;
 }
 
-/* Стили для полей с ошибками */
 .is-invalid {
-    border-color: #f44336 !important; /* Красный цвет границы */
+    border-color: #f44336 !important;
     background-color: rgba(244, 67, 54, 0.1) !important;
 }
 
-/* Сообщение об ошибке */
 .invalid-feedback {
     display: block;
     width: 100%;
     margin-top: 4px;
+    color: #f44336;
     font-size: 0.875rem;
-    color: #f44336; /* Красный текст */
     line-height: 1.2;
 }
 
-/* Анимация появления ошибки */
 .invalid-feedback {
     animation: fadeIn 0.3s ease;
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-5px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-/* Сообщения об ошибках */
 .error {
+    margin: 10px 0;
+    border-radius: 4px;
+    padding: 10px;
     color: #f44336;
     background-color: rgba(244, 67, 54, 0.1);
-    padding: 10px;
-    border-radius: 4px;
-    margin: 10px 0;
 }
 
-/* Сообщение о выигрыше */
 .win {
     color: #4caf50;
     font-weight: bold;
 }
 
-/* Сообщение о проигрыше */
 .lose {
     color: #ff9800;
     font-weight: bold;
 }
 
-/* Блок баланса */
 .user-balance {
+    width: 200px;
     color: #ffec00;
     font-weight: bold;
     font-size: 1.2rem;
     letter-spacing: 1px;
-    width: 200px;
 }
 
 .user-balance:hover {
-   transform: scale(1.05) translateY(-3px);
+    transform: scale(1.05) translateY(-3px);
 }
 
 .coin-container {
@@ -638,12 +620,18 @@ button[type="submit"]:active {
     position: absolute;
     width: 100%;
     height: 100%;
-    transform-style: preserve-3d;
     transform-origin: 50% 50%;
+    transform-style: preserve-3d;
 }
 
 @keyframes coinFlip {
-    0% { transform: rotateX(0deg); }
-    50% { transform: rotateX(180deg); }
-    100% { transform: rotateX(360deg); }
+    0% {
+        transform: rotateX(0deg);
+    }
+    50% {
+        transform: rotateX(180deg);
+    }
+    100% {
+        transform: rotateX(360deg);
+    }
 }
