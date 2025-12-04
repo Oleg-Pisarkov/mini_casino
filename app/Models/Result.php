@@ -12,9 +12,7 @@ class Result extends Model
     protected $table = 'results';
 
     // Укажите, какие поля можно массово присваивать (mass assignment)
-    protected $fillable = [
-        'user_id', 'bet', 'choice', 'result', 'win', 'winnings',
-    ];
+    protected $fillable = ['user_id', 'bet', 'choice', 'result', 'win', 'winnings'];
 
     // Связь "один ко многим" с моделью User (один пользователь может иметь много результатов)
     public function user()

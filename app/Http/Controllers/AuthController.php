@@ -15,32 +15,31 @@ class AuthController extends Controller
         return view('auth.register');
     }
 
+    public function register(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email|max:255',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
 
-public function register(Request $request)
-{
-    $request->validate([
-        'name' => 'required|string|max:255',
-        'email' => 'required|email|unique:users,email|max:255',
-        'password' => 'required|string|min:8|confirmed',
-    ]);
+        $user = User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => Hash::make($request->input('password')),
+            'balance' => 1000.0,
+        ]);
 
-    $user = User::create([
-        'name' => $request->input('name'),
-        'email' => $request->input('email'),
-        'password' => Hash::make($request->input('password')),
-        'balance' => 1000.00,
-    ]);
+        // Отправляем приветственное письмо (ошибка не повлияет на сохранение)
+        try {
+            Mail::to($user->email)->send(new WelcomeEmail($user));
+        } catch (\Exception $e) {
+            // Логируем ошибку, но не прерываем регистрацию
+            \Log::error('Ошибка отправки email: ' . $e->getMessage());
+        }
 
-    // Отправляем приветственное письмо (ошибка не повлияет на сохранение)
-    try {
-        Mail::to($user->email)->send(new WelcomeEmail($user));
-    } catch (\Exception $e) {
-        // Логируем ошибку, но не прерываем регистрацию
-        \Log::error('Ошибка отправки email: ' . $e->getMessage());
+        return redirect()->route('login')->with('success', 'Регистрация успешна! Проверьте почту.');
     }
-
-    return redirect()->route('login')->with('success', 'Регистрация успешна! Проверьте почту.');
-}
 
     public function showLoginForm()
     {

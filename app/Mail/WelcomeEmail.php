@@ -30,7 +30,7 @@ class WelcomeEmail extends Mailable
     {
         return new \Illuminate\Mail\Mailables\Envelope(
             subject: 'Добро пожаловать в MINI CASINO!',
-            from: 'no-reply@minicasino.loc'
+            from: 'no-reply@minicasino.loc',
         );
     }
 
@@ -43,7 +43,7 @@ class WelcomeEmail extends Mailable
             view: 'emails.welcome', // путь к шаблону (resources/views/emails/welcome.blade.php)
             with: [
                 'user' => $this->user,
-            ]
+            ],
         );
     }
 

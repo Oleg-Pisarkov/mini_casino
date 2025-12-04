@@ -1,25 +1,25 @@
-import "./bootstrap";
+import './bootstrap';
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener('DOMContentLoaded', function () {
     // Ищем форму игры, блок результата и элемент баланса
-    const form = document.getElementById("coinTossForm");
-    const resultDiv = document.getElementById("result");
-    const balanceElement = document.getElementById("balance");
+    const form = document.getElementById('coinTossForm');
+    const resultDiv = document.getElementById('result');
+    const balanceElement = document.getElementById('balance');
 
     // Проверяем, есть ли все необходимые элементы на странице
     if (!form || !resultDiv || !balanceElement) {
         return; // Если чего-то нет — не инициализируем обработчик
     }
 
-    form.addEventListener("submit", async function (e) {
+    form.addEventListener('submit', async function (e) {
         e.preventDefault(); // Отменяем стандартную отправку формы
 
         // 1. Запускаем анимацию
-        const coin = document.getElementById("coin");
-        coin.addEventListener("animationend", () => {
-            coin.style.animation = "none"; // Убираем анимацию после завершения
+        const coin = document.getElementById('coin');
+        coin.addEventListener('animationend', () => {
+            coin.style.animation = 'none'; // Убираем анимацию после завершения
         });
-        coin.style.animation = "coinFlip 1s ease";
+        coin.style.animation = 'coinFlip 1s ease';
 
         // 2. Ждём завершения анимации (3 секунды)
         await new Promise((resolve) => setTimeout(resolve, 3000));
@@ -30,13 +30,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
         try {
             // Отправляем запрос на сервер
-            const response = await fetch("/coin-toss", {
-                method: "POST",
+            const response = await fetch('/coin-toss', {
+                method: 'POST',
                 headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": document.querySelector(
-                        'meta[name="csrf-token"]'
-                    ).content,
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
                 },
                 body: JSON.stringify(data),
             });
@@ -48,14 +46,12 @@ document.addEventListener("DOMContentLoaded", function () {
             if (result.error) {
                 resultDiv.innerHTML = `
                     <p class="error">${result.error}</p>
-                    <p><strong>Текущий баланс:</strong> ${result.balance.toFixed(
-                        2
-                    )} ₽</p>
+                    <p><strong>Текущий баланс:</strong> ${result.balance.toFixed(2)} ₽</p>
                 `;
                 return;
             }
 
-            if (result.result === "heads") {
+            if (result.result === 'heads') {
                 coin.innerHTML = ` <svg xml:space="preserve" width="800" height="800" viewBox="0 0 800 800">
   <path d="M256 512A255 255 0 0 0 437 75C387 25 322 0 256 0z" style="opacity:.06;fill:#040000"/>
   <path d="M256 512a256 256 0 1 1 1-513 256 256 0 0 1-1 513" style="fill:#f8d176"/>
@@ -95,12 +91,8 @@ document.addEventListener("DOMContentLoaded", function () {
             // Формируем сообщение о результате игры
             let message = `
                 <p><strong>Ваша ставка:</strong> ${result.bet.toFixed(2)} ₽</p>
-                <p><strong>Ваш выбор:</strong> ${
-                    result.userChoice === "heads" ? "Орёл" : "Решка"
-                }</p>
-                <p><strong>Результат:</strong> ${
-                    result.result === "heads" ? "Орёл" : "Решка"
-                }</p>
+                <p><strong>Ваш выбор:</strong> ${result.userChoice === 'heads' ? 'Орёл' : 'Решка'}</p>
+                <p><strong>Результат:</strong> ${result.result === 'heads' ? 'Орёл' : 'Решка'}</p>
             `;
 
             if (result.win) {
@@ -123,19 +115,17 @@ document.addEventListener("DOMContentLoaded", function () {
             balanceElement.textContent = `${result.balance.toFixed(2)} ₽`;
 
             // Дополнительно обновляем баланс в форме игры
-            const balanceFormElement = document.getElementById("balance-form");
+            const balanceFormElement = document.getElementById('balance-form');
             if (balanceFormElement) {
-                balanceFormElement.textContent = `${result.balance.toFixed(
-                    2
-                )} ₽`;
+                balanceFormElement.textContent = `${result.balance.toFixed(2)} ₽`;
             }
 
             // Выводим результат в блок #result
             resultDiv.innerHTML = message;
             resultDiv.scrollIntoView({
-                behavior: "smooth",
-                block: "start",
-                inline: "nearest",
+                behavior: 'smooth',
+                block: 'start',
+                inline: 'nearest',
             });
         } catch (error) {
             // Обработка сетевых ошибок
@@ -144,7 +134,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     Ошибка при выполнении запроса. Проверьте подключение к интернету.
                 </p>
             `;
-            console.error("Ошибка запроса:", error);
+            console.error('Ошибка запроса:', error);
         }
     });
 });
